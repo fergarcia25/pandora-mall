@@ -6,13 +6,15 @@ import { Scene } from '@/features/virtual-mall';
 import Spinner from '@/components/ui/Spinner/Spinner';
 import styles from './VirtualMallPage.module.scss';
 
-const PROXIMITY_THRESHOLD = 1.8;
+const PROXIMITY_THRESHOLD = 3.6;
 
 const STORE_ENTRANCES = [
-  { id: 'store-1', name: 'Tech World', pos: [-4.8, 0, -3], color: '#6c5ce7' },
-  { id: 'store-2', name: 'Fashion Hub', pos: [4.8, 0, -3], color: '#fd79a8' },
-  { id: 'store-3', name: 'Game Zone', pos: [-4.8, 0, 5], color: '#00cec9' },
-  { id: 'store-4', name: 'Book Nook', pos: [4.8, 0, 5], color: '#fdcb6e' },
+  { id: 'store-1', name: 'Tech World', pos: [-9.6, 0, -6], color: '#6c5ce7' },
+  { id: 'store-2', name: 'Fashion Hub', pos: [9.6, 0, -6], color: '#fd79a8' },
+  { id: 'store-3', name: 'Game Zone', pos: [-9.6, 0, 10], color: '#00cec9' },
+  { id: 'store-4', name: 'Book Nook', pos: [9.6, 0, 10], color: '#fdcb6e' },
+  { id: 'store-5', name: 'Cyber Tower', pos: [-9.6, 0, 2], color: '#e17055' },
+  { id: 'store-6', name: 'Nexus Plaza', pos: [9.6, 0, 2], color: '#2e86de' },
 ];
 
 function VirtualMallPage() {

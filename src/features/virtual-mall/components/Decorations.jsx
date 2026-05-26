@@ -172,38 +172,24 @@ function Chair({ position, rotation = 0 }) {
 function Decorations() {
   return (
     <group>
-      {/* === PLANTS === */}
+      <PlantPot position={[-15, 0, -3]} scale={1} />
+      <PlantPot position={[15, 0, -3]} scale={1} />
+      <PlantPot position={[-15, 0, 13]} scale={1} />
+      <PlantPot position={[15, 0, 13]} scale={1} />
+      <PlantPot position={[-4, 0, -16]} scale={0.9} />
+      <PlantPot position={[4, 0, -16]} scale={0.9} />
+      <PlantPot position={[-3, 0, 18]} scale={1.1} />
+      <PlantPot position={[3, 0, 18]} scale={1.1} />
 
-      {/* Plant at entrance left side (near Tech World) */}
-      <PlantPot position={[-7.5, 0, -1.5]} scale={1} />
-      {/* Plant at entrance right side (near Fashion Hub) */}
-      <PlantPot position={[7.5, 0, -1.5]} scale={1} />
-      {/* Plant near Game Zone */}
-      <PlantPot position={[-7.5, 0, 6.5]} scale={1} />
-      {/* Plant near Book Nook */}
-      <PlantPot position={[7.5, 0, 6.5]} scale={1} />
-      {/* Center aisle plants */}
-      <PlantPot position={[-2, 0, -8]} scale={0.9} />
-      <PlantPot position={[2, 0, -8]} scale={0.9} />
-      {/* Near seating area */}
-      <PlantPot position={[-1.5, 0, 9]} scale={1.1} />
-      <PlantPot position={[1.5, 0, 9]} scale={1.1} />
+      <Bench position={[-6, 0, 0]} rotation={0} />
+      <Bench position={[6, 0, 0]} rotation={0} />
+      <Bench position={[-6, 0, -19]} rotation={Math.PI / 2} />
+      <Bench position={[6, 0, -19]} rotation={-Math.PI / 2} />
+      <Bench position={[0, 0, 19]} rotation={0} />
 
-      {/* === BENCHES === */}
-
-      {/* Center walkway benches */}
-      <Bench position={[-3, 0, 0]} rotation={0} />
-      <Bench position={[3, 0, 0]} rotation={0} />
-      {/* Benches near back wall */}
-      <Bench position={[-3, 0, -9.5]} rotation={Math.PI / 2} />
-      <Bench position={[3, 0, -9.5]} rotation={-Math.PI / 2} />
-      {/* Bench near front */}
-      <Bench position={[0, 0, 9.5]} rotation={0} />
-
-      {/* === TABLES & CHAIRS (seating area) === */}
-      <TableSet position={[-2.5, 0, 8]} rotation={0} />
-      <TableSet position={[2.5, 0, 8]} rotation={Math.PI / 4} />
-      <TableSet position={[0, 0, 7]} rotation={Math.PI / 6} />
+      <TableSet position={[-5, 0, 16]} rotation={0} />
+      <TableSet position={[5, 0, 16]} rotation={Math.PI / 4} />
+      <TableSet position={[0, 0, 14]} rotation={Math.PI / 6} />
     </group>
   );
 }

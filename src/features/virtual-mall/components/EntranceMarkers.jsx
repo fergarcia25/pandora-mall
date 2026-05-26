@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux';
 
-const PROXIMITY_THRESHOLD = 1.8;
+const PROXIMITY_THRESHOLD = 3.6;
 
 const ENTRANCES = [
-  { id: 'store-1', pos: [-4.8, 0.02, -3], color: '#6c5ce7' },
-  { id: 'store-2', pos: [4.8, 0.02, -3], color: '#fd79a8' },
-  { id: 'store-3', pos: [-4.8, 0.02, 5], color: '#00cec9' },
-  { id: 'store-4', pos: [4.8, 0.02, 5], color: '#fdcb6e' },
+  { id: 'store-1', pos: [-9.6, 0.02, -6], color: '#6c5ce7' },
+  { id: 'store-2', pos: [9.6, 0.02, -6], color: '#fd79a8' },
+  { id: 'store-3', pos: [-9.6, 0.02, 10], color: '#00cec9' },
+  { id: 'store-4', pos: [9.6, 0.02, 10], color: '#fdcb6e' },
 ];
 
 function EntranceMarkers() {

@@ -1,28 +1,72 @@
+import { useMemo } from 'react';
+import { CanvasTexture, RepeatWrapping } from 'three';
 import { RigidBody, CuboidCollider } from '@react-three/rapier';
-import { Grid } from '@react-three/drei';
+import { PottedPlant } from './StoreBox';
+
+function createTileTexture() {
+  const size = 512;
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d');
+
+  ctx.fillStyle = '#f8f8f8';
+  ctx.fillRect(0, 0, size, size);
+
+  const tileSize = size / 8;
+  for (let row = 0; row < 8; row++) {
+    for (let col = 0; col < 8; col++) {
+      const x = col * tileSize;
+      const y = row * tileSize;
+      const brightness = 248 - Math.random() * 8;
+      ctx.fillStyle = `rgb(${brightness}, ${brightness}, ${brightness})`;
+      ctx.fillRect(x + 1, y + 1, tileSize - 2, tileSize - 2);
+      ctx.strokeStyle = '#d4d4d4';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(x + 0.5, y + 0.5, tileSize - 1, tileSize - 1);
+    }
+  }
+
+  const texture = new CanvasTexture(canvas);
+  texture.wrapS = RepeatWrapping;
+  texture.wrapT = RepeatWrapping;
+  texture.repeat.set(16, 16);
+  return texture;
+}
 
 function Ground() {
+  const tileTexture = useMemo(() => createTileTexture(), []);
+
   return (
     <>
       <RigidBody type="fixed">
-        <CuboidCollider args={[25, 0.1, 25]} position={[0, -0.1, 0]} />
+        <CuboidCollider args={[50, 0.1, 50]} position={[0, -0.1, 0]} />
       </RigidBody>
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]} receiveShadow>
-        <planeGeometry args={[50, 50]} />
-        <meshStandardMaterial color="#f1f1f1" />
+        <planeGeometry args={[100, 100]} />
+        <meshStandardMaterial
+          map={tileTexture}
+          roughness={0.3}
+          metalness={0.05}
+        />
       </mesh>
-      <Grid
-        position={[0, 0, 0]}
-        args={[50, 50]}
-        cellSize={1}
-        cellThickness={0.6}
-        cellColor="#e8e8e8"
-        sectionSize={5}
-        sectionThickness={1}
-        sectionColor="#d0d0d0"
-        fadeDistance={40}
-        infiniteGrid
-      />
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.005, 0]}>
+        <planeGeometry args={[1.2, 100]} />
+        <meshStandardMaterial color="#2d2d44" />
+      </mesh>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.005, 0]}>
+        <ringGeometry args={[2.8, 3.6, 48]} />
+        <meshStandardMaterial color="#2d2d44" side={2} />
+      </mesh>
+      {(() => {
+        const spacing = (100 / 16) * 3;
+        const count = Math.floor(100 / spacing) + 1;
+        return Array.from({ length: count }, (_, i) => (
+          <group key={i} position={[0, 0, -50 + i * spacing]}>
+            <PottedPlant />
+          </group>
+        ));
+      })()}
     </>
   );
 }
