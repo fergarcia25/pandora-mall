@@ -1,0 +1,44 @@
+.footer {
+  margin-top: auto;
+  border-top: 1px solid rgba(223, 230, 233, 0.08);
+  background: rgba(10, 10, 26, 0.6);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.logo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #6c5ce7, #00cec9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tagline {
+  font-size: 0.8rem;
+  color: #636e72;
+}
+
+.copyright {
+  font-size: 0.85rem;
+  color: #636e72;
+}
+
+.links {
+  display: flex;
+  gap: 1rem;
+}

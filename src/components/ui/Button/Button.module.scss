@@ -1,0 +1,38 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.ghost {
+  background: transparent;
+  border: 1px solid rgba(223, 230, 233, 0.2);
+  color: #dfe6e9;
+
+  &:hover {
+    background: rgba(223, 230, 233, 0.08);
+    border-color: rgba(223, 230, 233, 0.3);
+  }
+}
+
+.loading {
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

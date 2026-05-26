@@ -1,0 +1,31 @@
+.card {
+  background: #1a1a2e;
+  border: 1px solid rgba(223, 230, 233, 0.08);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+}
+
+.hoverable {
+  &:hover {
+    border-color: rgba(108, 92, 231, 0.3);
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+  }
+}
+
+.header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(223, 230, 233, 0.08);
+  background: rgba(10, 10, 26, 0.4);
+}
+
+.body {
+  padding: 1.25rem;
+}
+
+.footer {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid rgba(223, 230, 233, 0.08);
+  background: rgba(10, 10, 26, 0.4);
+}

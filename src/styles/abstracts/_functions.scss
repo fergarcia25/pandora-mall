@@ -1,0 +1,58 @@
+// ============================================
+// Pandora Mall — Custom SASS Functions
+// ============================================
+
+// ---- Color luminance ----
+@function luminance($color) {
+  $red: red($color) / 255;
+  $green: green($color) / 255;
+  $blue: blue($color) / 255;
+
+  $red: if($red < 0.03928, $red / 12.92, pow(($red + 0.055) / 1.055, 2.4));
+  $green: if($green < 0.03928, $green / 12.92, pow(($green + 0.055) / 1.055, 2.4));
+  $blue: if($blue < 0.03928, $blue / 12.92, pow(($blue + 0.055) / 1.055, 2.4));
+
+  @return 0.2126 * $red + 0.7152 * $green + 0.0722 * $blue;
+}
+
+// ---- Contrast ratio ----
+@function contrast-ratio($background, $foreground) {
+  $bg-lum: luminance($background) + 0.05;
+  $fg-lum: luminance($foreground) + 0.05;
+
+  @return if($bg-lum > $fg-lum, $bg-lum / $fg-lum, $fg-lum / $bg-lum);
+}
+
+// ---- Text color based on background ----
+@function text-contrast($background) {
+  $light: #dfe6e9;
+  $dark: #0a0a1a;
+
+  @if contrast-ratio($background, $light) > contrast-ratio($background, $dark) {
+    @return $light;
+  } @else {
+    @return $dark;
+  }
+}
+
+// ---- Rem calculator ----
+@function rem($px, $base: 16px) {
+  @return ($px / $base) * 1rem;
+}
+
+// ---- Pow (SASS doesn't have built-in pow in all versions) ----
+@function pow($number, $exponent) {
+  $value: 1;
+
+  @if $exponent > 0 {
+    @for $i from 1 through $exponent {
+      $value: $value * $number;
+    }
+  } @else if $exponent < 0 {
+    @for $i from 1 through -$exponent {
+      $value: $value / $number;
+    }
+  }
+
+  @return $value;
+}

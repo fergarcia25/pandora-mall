@@ -1,0 +1,90 @@
+// ============================================
+// Pandora Mall — Bootstrap Component Overrides
+// These styles ADD to/extend Bootstrap components
+// without modifying bootstrap source files.
+// ============================================
+
+// ---- Navbar ----
+.navbar {
+  border-bottom: 1px solid rgba(223, 230, 233, 0.08);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+}
+
+// ---- Cards ----
+.card {
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    border-color: rgba(108, 92, 231, 0.3);
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.4);
+  }
+}
+
+// ---- Buttons ----
+.btn {
+  text-transform: none;
+  letter-spacing: 0.01em;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-primary {
+  &:hover {
+    box-shadow: 0 0 10px rgba(108, 92, 231, 0.4);
+  }
+}
+
+.btn-secondary {
+  &:hover {
+    box-shadow: 0 0 10px rgba(0, 206, 201, 0.4);
+  }
+}
+
+.btn-accent {
+  color: #fff;
+  background-color: #fd79a8;
+  border-color: #fd79a8;
+
+  &:hover {
+    color: #fff;
+    background-color: darken(#fd79a8, 10%);
+    border-color: darken(#fd79a8, 10%);
+    box-shadow: 0 0 10px rgba(253, 121, 168, 0.4);
+  }
+}
+
+// ---- Modals ----
+.modal-content {
+  border: 1px solid rgba(223, 230, 233, 0.1);
+}
+
+// ---- Forms ----
+.form-control {
+  &::placeholder {
+    opacity: 0.6;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(108, 92, 231, 0.25);
+  }
+}
+
+// ---- Badges ----
+.badge {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+// ---- Alerts ----
+.alert {
+  border: none;
+}
+
+// ---- List groups ----
+.list-group-item {
+  transition: background-color 0.15s ease;
+}

@@ -1,0 +1,192 @@
+// ============================================
+// Pandora Mall — Custom Variables
+// Override Bootstrap !default variables
+// ============================================
+
+// ---- Color System ----
+$primary: #6c5ce7;
+$primary-rgb: 108, 92, 231;
+$secondary: #00cec9;
+$secondary-rgb: 0, 206, 201;
+$accent: #fd79a8;
+$accent-rgb: 253, 121, 168;
+
+// Theme colors
+$dark: #0a0a1a;
+$dark-rgb: 10, 10, 26;
+$surface: #1a1a2e;
+$surface-rgb: 26, 26, 46;
+$text: #dfe6e9;
+$text-rgb: 223, 230, 233;
+$text-muted: #636e72;
+
+// State colors
+$success: #00b894;
+$success-rgb: 0, 184, 148;
+$warning: #fdcb6e;
+$warning-rgb: 253, 203, 110;
+$danger: #d63031;
+$danger-rgb: 214, 48, 49;
+$info: #74b9ff;
+$info-rgb: 116, 185, 255;
+
+// Bootstrap theme color map override
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "dark": $dark,
+  "surface": $surface,
+  "accent": $accent,
+);
+
+// ---- Typography ----
+$font-family-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-family-monospace: 'JetBrains Mono', 'Fira Code', monospace;
+$font-family-base: $font-family-sans-serif;
+
+$headings-font-weight: 700;
+$headings-line-height: 1.2;
+
+$font-size-root: 16px;
+$font-size-base: 1rem;
+$h1-font-size: 2.5rem;
+$h2-font-size: 2rem;
+$h3-font-size: 1.75rem;
+$h4-font-size: 1.5rem;
+$h5-font-size: 1.25rem;
+$h6-font-size: 1rem;
+
+// ---- Spacing ----
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  6: $spacer * 4,
+);
+
+// ---- Body ----
+$body-bg: $dark;
+$body-color: $text;
+
+// ---- Links ----
+$link-color: $primary;
+$link-hover-color: #8b7cf0;
+$link-decoration: none;
+
+// ---- Navbar ----
+$navbar-dark-color: rgba($text, 0.85);
+$navbar-dark-hover-color: $text;
+$navbar-dark-active-color: $primary;
+$navbar-padding-y: 0.75rem;
+
+// ---- Cards ----
+$card-bg: $surface;
+$card-border-color: rgba($text, 0.08);
+$card-border-radius: 0.75rem;
+$card-cap-bg: rgba($dark, 0.4);
+$card-color: $text;
+
+// ---- Buttons ----
+$btn-border-radius: 0.5rem;
+$btn-border-radius-lg: 0.625rem;
+$btn-border-radius-sm: 0.375rem;
+$btn-padding-y: 0.5rem;
+$btn-padding-x: 1.25rem;
+$btn-font-weight: 600;
+
+// ---- Inputs ----
+$input-bg: $surface;
+$input-color: $text;
+$input-border-color: rgba($text, 0.15);
+$input-focus-border-color: $primary;
+$input-focus-box-shadow: 0 0 0 0.2rem rgba($primary, 0.25);
+$input-placeholder-color: $text-muted;
+$input-border-radius: 0.5rem;
+
+// ---- Modals ----
+$modal-content-bg: $surface;
+$modal-header-border-color: rgba($text, 0.08);
+$modal-footer-border-color: rgba($text, 0.08);
+$modal-backdrop-bg: $dark;
+$modal-backdrop-opacity: 0.7;
+
+// ---- Alerts ----
+$alert-bg-scale: -80%;
+$alert-border-scale: -70%;
+$alert-color-scale: 20%;
+
+// ---- Badges ----
+$badge-font-size: 0.75em;
+$badge-font-weight: 600;
+
+// ---- Tooltips ----
+$tooltip-bg: $surface;
+$tooltip-color: $text;
+
+// ---- Progress ----
+$progress-bg: rgba($text, 0.1);
+$progress-border-radius: 1rem;
+
+// ---- List group ----
+$list-group-bg: $surface;
+$list-group-color: $text;
+$list-group-border-color: rgba($text, 0.08);
+
+// ---- Border ----
+$border-color: rgba($text, 0.08);
+$border-radius: 0.5rem;
+
+// ---- Shadows ----
+$box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.3);
+$box-shadow-sm: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.2);
+$box-shadow-lg: 0 0.5rem 2rem rgba(0, 0, 0, 0.4);
+
+// ---- Transitions ----
+$transition-base: all 0.2s ease-in-out;
+$transition-fast: all 0.1s ease-in-out;
+
+// ---- Custom: Neon glow ----
+$neon-primary: 0 0 10px rgba($primary, 0.5), 0 0 20px rgba($primary, 0.3);
+$neon-secondary: 0 0 10px rgba($secondary, 0.5), 0 0 20px rgba($secondary, 0.3);
+$neon-accent: 0 0 10px rgba($accent, 0.5), 0 0 20px rgba($accent, 0.3);
+
+// ---- Z-index master ----
+$zindex-dropdown: 1000;
+$zindex-sticky: 1020;
+$zindex-fixed: 1030;
+$zindex-modal-backdrop: 1040;
+$zindex-modal: 1050;
+$zindex-popover: 1060;
+$zindex-tooltip: 1070;
+
+// ---- Grid ----
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px,
+);
+
+// ---- Responsive font sizes ----
+$enable-responsive-font-sizes: true;
+
+// ---- Smooth scroll ----
+$enable-smooth-scroll: true;

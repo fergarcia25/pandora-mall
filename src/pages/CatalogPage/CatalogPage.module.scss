@@ -1,0 +1,124 @@
+.page {
+  flex: 1;
+  padding: 2rem 0;
+}
+
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+  color: #dfe6e9;
+}
+
+.subtitle {
+  color: #636e72;
+  font-size: 1.05rem;
+}
+
+.filters {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.filterBtn {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #636e72;
+  background: transparent;
+  border: 1px solid rgba(223, 230, 233, 0.12);
+  border-radius: 2rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: #dfe6e9;
+    border-color: rgba(223, 230, 233, 0.25);
+  }
+}
+
+.filterActive {
+  color: #fff;
+  background: #6c5ce7;
+  border-color: #6c5ce7;
+
+  &:hover {
+    color: #fff;
+    background: #5f4ed4;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.productCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.productImage {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(108, 92, 231, 0.06);
+  border-bottom: 1px solid rgba(223, 230, 233, 0.06);
+}
+
+.productPlaceholder {
+  font-size: 3rem;
+  font-weight: 800;
+  color: rgba(108, 92, 231, 0.2);
+}
+
+.productInfo {
+  padding: 1rem 1.25rem;
+  flex: 1;
+}
+
+.productStore {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6c5ce7;
+}
+
+.productName {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0.25rem 0 0.5rem;
+  color: #dfe6e9;
+}
+
+.productPrice {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #00cec9;
+}
+
+.productActions {
+  padding: 0 1.25rem 1rem;
+}
+
+.empty {
+  text-align: center;
+  color: #636e72;
+  padding: 3rem 0;
+}

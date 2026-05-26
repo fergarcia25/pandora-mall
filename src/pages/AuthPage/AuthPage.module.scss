@@ -1,0 +1,67 @@
+.page {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+}
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  padding: 2.5rem;
+  background: #1a1a2e;
+  border: 1px solid rgba(223, 230, 233, 0.08);
+  border-radius: 0.75rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+  color: #dfe6e9;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #636e72;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #dfe6e9;
+}
+
+.switch {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  color: #636e72;
+}
+
+.switchBtn {
+  color: #6c5ce7;
+  font-weight: 600;
+  transition: color 0.15s ease;
+
+  &:hover {
+    color: #8b7cf0;
+  }
+}

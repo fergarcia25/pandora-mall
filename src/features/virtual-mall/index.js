@@ -1,0 +1,10 @@
+export { default as Scene } from './components/Scene';
+export { default as Avatar } from './components/Avatar';
+export { default as Ground } from './components/Ground';
+export { default as MallStructure } from './components/MallStructure';
+export { default as StoreBox } from './components/StoreBox';
+export { default as Lights } from './components/Lights';
+export { default as CameraController } from './components/CameraController';
+export { default as Decorations } from './components/Decorations';
+export { default as EntranceMarkers } from './components/EntranceMarkers';
+export { useKeyboardControls } from './hooks/useKeyboardControls';

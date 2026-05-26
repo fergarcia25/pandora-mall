@@ -1,0 +1,90 @@
+// ============================================
+// Pandora Mall — Custom Mixins
+// ============================================
+
+@import 'variables';
+
+// ---- Neon glow effect ----
+@mixin neon-glow($color: $primary, $intensity: 0.5) {
+  box-shadow: 0 0 10px rgba($color, $intensity),
+              0 0 20px rgba($color, $intensity * 0.6);
+}
+
+// ---- Glass morphism ----
+@mixin glass($bg-opacity: 0.1, $blur: 10px) {
+  background: rgba($surface, $bg-opacity);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid rgba($text, 0.08);
+}
+
+// ---- Flex center ----
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// ---- Flex between ----
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// ---- Custom scrollbar ----
+@mixin custom-scrollbar($width: 6px, $thumb-color: $primary, $track-color: $surface) {
+  &::-webkit-scrollbar {
+    width: $width;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: $width / 2;
+
+    &:hover {
+      background: lighten($thumb-color, 10%);
+    }
+  }
+}
+
+// ---- Text gradient ----
+@mixin text-gradient($from: $primary, $to: $secondary) {
+  background: linear-gradient(135deg, $from, $to);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// ---- Hover lift ----
+@mixin hover-lift($distance: -4px, $shadow-intensity: 0.3) {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY($distance);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, $shadow-intensity);
+  }
+}
+
+// ---- Responsive breakpoints ----
+@mixin respond-below($breakpoint) {
+  @if map-has-key($grid-breakpoints, $breakpoint) {
+    $value: map-get($grid-breakpoints, $breakpoint);
+    @media (max-width: ($value - 1px)) {
+      @content;
+    }
+  }
+}
+
+@mixin respond-above($breakpoint) {
+  @if map-has-key($grid-breakpoints, $breakpoint) {
+    $value: map-get($grid-breakpoints, $breakpoint);
+    @media (min-width: $value) {
+      @content;
+    }
+  }
+}
