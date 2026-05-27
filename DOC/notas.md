@@ -1,0 +1,1 @@
+renderizar el archivo GLB  ubicado en el directorio: \src\assets\images\low_poly_humanoid_robot.gl

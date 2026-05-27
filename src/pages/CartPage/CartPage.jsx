@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart, updateQuantity, clearCart } from '@/store/slices/cartSlice';
 import Button from '@/components/ui/Button/Button';
@@ -17,9 +18,11 @@ function CartPage() {
             <p className={styles.subtitle}>
               Browse the catalog and add some items to get started.
             </p>
-            <Button variant="primary" onClick={() => window.location.href = '/catalog'}>
-              Browse Products
-            </Button>
+            <Link to="/catalog">
+              <Button variant="primary">
+                Browse Products
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

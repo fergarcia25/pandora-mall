@@ -25,8 +25,9 @@ function PageLoader() {
 }
 
 function AppRouter() {
+  const basename = import.meta.env.VITE_BASE_URL || '';
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route element={<MainLayout />}>

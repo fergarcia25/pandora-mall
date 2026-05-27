@@ -1,0 +1,19 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+    
+
+    # Archivos estáticos de dist/assets/
+    RewriteRule ^assets/(.+)$ dist/assets/$1 [L]
+
+    # Archivos raíz (favicon, icons)
+    RewriteRule ^favicon\.svg$ dist/favicon.svg [L]
+    RewriteRule ^icons\.svg$ dist/icons.svg [L]
+
+    # SPA catch-all: solo si el archivo no existe (evita loops)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ dist/index.html [L]
+</IfModule>
