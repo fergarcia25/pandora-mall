@@ -11,6 +11,7 @@ import Decorations from './Decorations';
 import EntranceMarkers from './EntranceMarkers';
 import Fountain from './Fountain';
 import ReceptionCounter from './ReceptionCounter';
+import NPC from './NPC';
 
 function Scene() {
   return (
@@ -31,6 +32,7 @@ function Scene() {
         <Decorations />
         <EntranceMarkers />
         <Avatar />
+        <NPC />
       </Physics>
       <Billboard />
     </Canvas>

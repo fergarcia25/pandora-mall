@@ -1,13 +1,17 @@
-import { Suspense, useState, useCallback, useEffect } from 'react';
+import { Suspense, useState, useCallback, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toggleCameraMode } from '@/store/slices/uiSlice';
+import { setNpcGreeting } from '@/store/slices/mallSlice';
 import { Scene } from '@/features/virtual-mall';
+import FloatingPrompt from '@/features/virtual-mall/components/FloatingPrompt';
 import TouchJoystick from '@/features/virtual-mall/components/TouchJoystick';
 import Spinner from '@/components/ui/Spinner/Spinner';
 import styles from './VirtualMallPage.module.scss';
 
 const PROXIMITY_THRESHOLD = 3.6;
+const NPC_PROXIMITY_THRESHOLD = 3.5;
+const GREETING_COOLDOWN = 20;
 
 const STORE_ENTRANCES = [
   { id: 'store-1', name: 'Tech World', pos: [-9.6, 0, -6], color: '#6c5ce7' },
@@ -23,8 +27,22 @@ function VirtualMallPage() {
   const dispatch = useDispatch();
   const avatarPos = useSelector((state) => state.mall.avatarPosition);
   const cameraMode = useSelector((state) => state.ui.cameraMode);
+  const npcPos = useSelector((state) => state.mall.npcPosition);
+  const npcGreeting = useSelector((state) => state.mall.npcGreeting);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [nearbyStore, setNearbyStore] = useState(null);
+  const [nearbyNpc, setNearbyNpc] = useState(false);
+  const [greetingActive, setGreetingActive] = useState(false);
+  const [greetingCooldown, setGreetingCooldown] = useState(false);
+  const storeCooldown = useRef(null);
+
+  useEffect(() => {
+    if (!greetingActive && npcGreeting) {
+      setGreetingActive(true);
+    } else if (greetingActive && !npcGreeting) {
+      setGreetingActive(false);
+    }
+  }, [npcGreeting, greetingActive]);
 
   useEffect(() => {
     const handler = () => setIsFullscreen(!!document.fullscreenElement);
@@ -51,7 +69,21 @@ function VirtualMallPage() {
     if (found?.id !== nearbyStore?.id) {
       setNearbyStore(found);
     }
-  }, [avatarPos, nearbyStore]);
+
+    const [nx, , nz] = npcPos;
+    const npcDx = ax - nx;
+    const npcDz = az - nz;
+    const npcDist = Math.sqrt(npcDx * npcDx + npcDz * npcDz);
+    const isNearNpc = npcDist < NPC_PROXIMITY_THRESHOLD;
+    setNearbyNpc(isNearNpc);
+  }, [avatarPos, nearbyStore, npcPos]);
+
+  const storeInCooldown = storeCooldown.current !== null;
+  const prompt = nearbyStore && !storeInCooldown
+    ? { type: 'store', store: nearbyStore }
+    : nearbyNpc && !greetingActive && !greetingCooldown
+      ? { type: 'npc' }
+      : null;
 
   const toggleFullscreen = useCallback(() => {
     if (!document.fullscreenElement) {
@@ -61,15 +93,29 @@ function VirtualMallPage() {
     }
   }, []);
 
-  const handleEnterStore = useCallback(() => {
-    if (nearbyStore) {
-      navigate(`/catalog?store=${nearbyStore.id}`);
+  const handleConfirm = useCallback(() => {
+    if (!prompt) return;
+    if (prompt.type === 'store') {
+      storeCooldown.current = setTimeout(() => {
+        storeCooldown.current = null;
+      }, GREETING_COOLDOWN * 1000);
+      navigate(`/catalog?store=${prompt.store.id}`);
+    } else if (prompt.type === 'npc') {
+      dispatch(setNpcGreeting(true));
+      setGreetingCooldown(true);
+      setTimeout(() => setGreetingCooldown(false), GREETING_COOLDOWN * 1000);
     }
-  }, [nearbyStore, navigate]);
+  }, [prompt, navigate, dispatch]);
 
-  const handleDismiss = useCallback(() => {
-    setNearbyStore(null);
-  }, []);
+  useEffect(() => {
+    const handler = (e) => {
+      if (e.key === 'Enter' && prompt) {
+        handleConfirm();
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [prompt, handleConfirm]);
 
   return (
     <div className={styles.fullscreen} id="virtual-mall-container">
@@ -101,7 +147,6 @@ function VirtualMallPage() {
       </div>
 
       <div className={styles.topButtons}>
-
         <button
           className={styles.fullscreenBtn}
           onClick={toggleFullscreen}
@@ -135,31 +180,7 @@ function VirtualMallPage() {
         </div>
       </div>
 
-      {nearbyStore && (
-        <div className={styles.promptOverlay} onClick={handleDismiss}>
-          <div className={styles.prompt} onClick={(e) => e.stopPropagation()}>
-            <div
-              className={styles.promptBar}
-              style={{ background: nearbyStore.color }}
-            />
-            <p className={styles.promptText}>
-              Enter <strong>{nearbyStore.name}</strong>?
-            </p>
-            <div className={styles.promptActions}>
-              <button
-                className={styles.promptEnter}
-                style={{ background: nearbyStore.color }}
-                onClick={handleEnterStore}
-              >
-                Enter Store
-              </button>
-              <button className={styles.promptCancel} onClick={handleDismiss}>
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <FloatingPrompt prompt={prompt} onConfirm={handleConfirm} />
 
       <TouchJoystick />
     </div>

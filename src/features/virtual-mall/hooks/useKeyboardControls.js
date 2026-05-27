@@ -46,7 +46,7 @@ export function useKeyboardControls() {
     };
 
     const handleMouseMove = (e) => {
-      mouse.x += e.movementX * 0.002;
+      mouse.x -= e.movementX * 0.002;
       mouse.y += e.movementY * 0.002;
       mouse.y = Math.max(-1, Math.min(1, mouse.y));
     };

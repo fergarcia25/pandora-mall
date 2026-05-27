@@ -5,6 +5,8 @@ import reducer, {
   enterStore,
   exitStore,
   setNearbyStores,
+  setNpcPosition,
+  setNpcGreeting,
 } from './mallSlice';
 
 describe('mallSlice', () => {
@@ -15,6 +17,8 @@ describe('mallSlice', () => {
     stores: [],
     nearbyStores: [],
     isInsideStore: false,
+    npcPosition: [0, 0, 30.6],
+    npcGreeting: false,
   };
 
   it('returns initial state', () => {
@@ -47,5 +51,15 @@ describe('mallSlice', () => {
     const state = reducer(inside, exitStore());
     expect(state.isInsideStore).toBe(false);
     expect(state.currentStore).toBeNull();
+  });
+
+  it('sets npc position', () => {
+    const state = reducer(initialState, setNpcPosition([1, 0, 2]));
+    expect(state.npcPosition).toEqual([1, 0, 2]);
+  });
+
+  it('sets npc greeting', () => {
+    expect(reducer(initialState, setNpcGreeting(true)).npcGreeting).toBe(true);
+    expect(reducer(initialState, setNpcGreeting(false)).npcGreeting).toBe(false);
   });
 });

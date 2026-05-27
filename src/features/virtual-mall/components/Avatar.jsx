@@ -6,7 +6,7 @@ import { useKeyboardControls } from '../hooks/useKeyboardControls';
 import { useDispatch } from 'react-redux';
 import { setAvatarPosition, setAvatarRotation } from '@/store/slices/mallSlice';
 
-const MOVE_SPEED = 4;
+const MOVE_SPEED = 4.8;
 const ROTATE_SPEED = 2.5;
 
 function HumanFigure() {

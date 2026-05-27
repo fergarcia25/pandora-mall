@@ -9,6 +9,8 @@ const mallSlice = createSlice({
     stores: [],
     nearbyStores: [],
     isInsideStore: false,
+    npcPosition: [0, 0, 30.6],
+    npcGreeting: false,
   },
   reducers: {
     setAvatarPosition: (state, action) => {
@@ -34,6 +36,12 @@ const mallSlice = createSlice({
       state.isInsideStore = false;
       state.currentStore = null;
     },
+    setNpcPosition: (state, action) => {
+      state.npcPosition = action.payload;
+    },
+    setNpcGreeting: (state, action) => {
+      state.npcGreeting = action.payload;
+    },
     resetMall: () => initialState,
   },
 });
@@ -46,6 +54,8 @@ export const {
   setNearbyStores,
   enterStore,
   exitStore,
+  setNpcPosition,
+  setNpcGreeting,
   resetMall,
 } = mallSlice.actions;
 
