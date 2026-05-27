@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import styles from './Header.module.scss';
 
 const navLinks = [
-  { path: '/', label: 'Home' },
+  //{ path: '/', label: 'Home' },
   { path: '/mall', label: 'Virtual Mall' },
-  { path: '/catalog', label: 'Catalog' },
-  { path: '/cart', label: 'Cart' },
+  //{ path: '/catalog', label: 'Catalog' },
+  //{ path: '/cart', label: 'Cart' },
 ];
 
 function Header() {

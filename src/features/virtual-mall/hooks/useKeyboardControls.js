@@ -1,33 +1,25 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
+import { keys, mouse } from '../stores/movementStore';
 
 export function useKeyboardControls() {
-  const keys = useRef({
-    forward: false,
-    backward: false,
-    left: false,
-    right: false,
-  });
-
-  const mouse = useRef({ x: 0, y: 0 });
-
   useEffect(() => {
     const handleKeyDown = (e) => {
       switch (e.code) {
         case 'KeyW':
         case 'ArrowUp':
-          keys.current.forward = true;
+          keys.forward = true;
           break;
         case 'KeyS':
         case 'ArrowDown':
-          keys.current.backward = true;
+          keys.backward = true;
           break;
         case 'KeyA':
         case 'ArrowLeft':
-          keys.current.left = true;
+          keys.left = true;
           break;
         case 'KeyD':
         case 'ArrowRight':
-          keys.current.right = true;
+          keys.right = true;
           break;
       }
     };
@@ -36,27 +28,27 @@ export function useKeyboardControls() {
       switch (e.code) {
         case 'KeyW':
         case 'ArrowUp':
-          keys.current.forward = false;
+          keys.forward = false;
           break;
         case 'KeyS':
         case 'ArrowDown':
-          keys.current.backward = false;
+          keys.backward = false;
           break;
         case 'KeyA':
         case 'ArrowLeft':
-          keys.current.left = false;
+          keys.left = false;
           break;
         case 'KeyD':
         case 'ArrowRight':
-          keys.current.right = false;
+          keys.right = false;
           break;
       }
     };
 
     const handleMouseMove = (e) => {
-      mouse.current.x += e.movementX * 0.002;
-      mouse.current.y += e.movementY * 0.002;
-      mouse.current.y = Math.max(-1, Math.min(1, mouse.current.y));
+      mouse.x += e.movementX * 0.002;
+      mouse.y += e.movementY * 0.002;
+      mouse.y = Math.max(-1, Math.min(1, mouse.y));
     };
 
     window.addEventListener('keydown', handleKeyDown);
@@ -70,5 +62,5 @@ export function useKeyboardControls() {
     };
   }, []);
 
-  return { keys: keys.current, mouse: mouse.current };
+  return { keys, mouse };
 }

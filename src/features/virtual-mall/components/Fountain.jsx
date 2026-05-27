@@ -48,6 +48,49 @@ function createMarbleTexture() {
   return texture;
 }
 
+function createWhiteTexture() {
+  const canvas = document.createElement('canvas');
+  canvas.width = 256;
+  canvas.height = 256;
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width;
+  const h = canvas.height;
+
+  ctx.fillStyle = '#f5f5f5';
+  ctx.fillRect(0, 0, w, h);
+
+  const imageData = ctx.getImageData(0, 0, w, h);
+  const d = imageData.data;
+
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      const i = (y * w + x) * 4;
+      const nx = x / w;
+      const ny = y / h;
+
+      let v = 0;
+      v += Math.sin(nx * 8 + ny * 6) * 0.04;
+      v += Math.sin(nx * 20 + ny * 15 + 1.7) * 0.02;
+      v = v * 0.5 + 0.5;
+
+      const c = Math.round(235 + v * 15);
+      d[i] = c;
+      d[i + 1] = c;
+      d[i + 2] = c;
+      d[i + 3] = 255;
+    }
+  }
+
+  ctx.putImageData(imageData, 0, 0);
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(1, 2);
+  texture.anisotropy = 4;
+  return texture;
+}
+
 const PARTICLE_COUNT = 80;
 
 function WaterJet({ position: jetPos, direction = 1 }) {
@@ -118,6 +161,7 @@ function WaterJet({ position: jetPos, direction = 1 }) {
 
 function Fountain() {
   const marbleTex = useMemo(() => createMarbleTexture(), []);
+  const whiteTex = useMemo(() => createWhiteTexture(), []);
 
   return (
     <RigidBody type="fixed" colliders={false}>
@@ -134,7 +178,7 @@ function Fountain() {
 
         <mesh position={[0, 0.3, 0]}>
           <cylinderGeometry args={[2.5, 2.5, 0.04, 48]} />
-          <meshStandardMaterial color="#87CEEB" transparent opacity={0.5} roughness={0.3} metalness={0.2} />
+          <meshStandardMaterial color="#4fc3f7" transparent opacity={0.5} roughness={0.3} metalness={0.2} />
         </mesh>
 
         <mesh position={[0, 0.06, 0]} receiveShadow>
@@ -154,12 +198,12 @@ function Fountain() {
 
         <mesh position={[0, 1.0, 0]}>
           <cylinderGeometry args={[0.3, 0.55, 1.4, 24]} />
-          <meshStandardMaterial map={marbleTex} roughness={0.5} metalness={0.15} />
+          <meshStandardMaterial map={whiteTex} roughness={0.6} metalness={0.05} />
         </mesh>
 
         <mesh position={[0, 0.32, 0]}>
           <cylinderGeometry args={[1.55, 1.55, 0.04, 48]} />
-          <meshStandardMaterial color="#87CEEB" transparent opacity={0.5} roughness={0.3} metalness={0.2} />
+          <meshStandardMaterial color="#4fc3f7" transparent opacity={0.5} roughness={0.3} metalness={0.2} />
         </mesh>
 
         <mesh position={[0, 0.5, 0]}>
@@ -174,11 +218,6 @@ function Fountain() {
             <meshStandardMaterial color="#00cec9" emissive="#00cec9" emissiveIntensity={0.5} />
           </mesh>
         ))}
-
-        <mesh position={[0, 0.48, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-          <ringGeometry args={[1.05, 1.15, 48]} />
-          <meshStandardMaterial color="#fd79a8" emissive="#fd79a8" emissiveIntensity={0.7} side={2} />
-        </mesh>
 
         <mesh position={[0, 1.72, 0]}>
           <torusGeometry args={[0.38, 0.04, 16, 32]} />

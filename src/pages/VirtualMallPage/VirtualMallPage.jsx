@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toggleCameraMode } from '@/store/slices/uiSlice';
 import { Scene } from '@/features/virtual-mall';
+import TouchJoystick from '@/features/virtual-mall/components/TouchJoystick';
 import Spinner from '@/components/ui/Spinner/Spinner';
 import styles from './VirtualMallPage.module.scss';
 
@@ -159,6 +160,8 @@ function VirtualMallPage() {
           </div>
         </div>
       )}
+
+      <TouchJoystick />
     </div>
   );
 }

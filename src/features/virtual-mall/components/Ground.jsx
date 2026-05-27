@@ -54,6 +54,38 @@ function Ground() {
         <planeGeometry args={[1.2, 100]} />
         <meshStandardMaterial color="#2d2d44" />
       </mesh>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.005, 30.6]}>
+        <planeGeometry args={[20, 1.2]} />
+        <meshStandardMaterial color="#2d2d44" />
+      </mesh>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[-10.4, 0.005, 39.75]}>
+        <planeGeometry args={[1.2, 17.5]} />
+        <meshStandardMaterial color="#2d2d44" />
+      </mesh>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[10.4, 0.005, 39.75]}>
+        <planeGeometry args={[1.2, 17.5]} />
+        <meshStandardMaterial color="#2d2d44" />
+      </mesh>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.005, 48.6]}>
+        <planeGeometry args={[20, 1.2]} />
+        <meshStandardMaterial color="#2d2d44" />
+      </mesh>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[-9.8, 0.005, 31.2]}>
+        <ringGeometry args={[0.001, 1.2, 24, 1, Math.PI, Math.PI / 2]} />
+        <meshStandardMaterial color="#2d2d44" side={2} />
+      </mesh>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[9.8, 0.005, 31.2]}>
+        <ringGeometry args={[0.001, 1.2, 24, 1, Math.PI * 1.5, Math.PI / 2]} />
+        <meshStandardMaterial color="#2d2d44" side={2} />
+      </mesh>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[-9.8, 0.005, 48.0]}>
+        <ringGeometry args={[0.001, 1.2, 24, 1, Math.PI / 2, Math.PI / 2]} />
+        <meshStandardMaterial color="#2d2d44" side={2} />
+      </mesh>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[9.8, 0.005, 48.0]}>
+        <ringGeometry args={[0.001, 1.2, 24, 1, 0, Math.PI / 2]} />
+        <meshStandardMaterial color="#2d2d44" side={2} />
+      </mesh>
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.005, 0]}>
         <ringGeometry args={[2.8, 3.6, 48]} />
         <meshStandardMaterial color="#2d2d44" side={2} />
@@ -61,11 +93,15 @@ function Ground() {
       {(() => {
         const spacing = (100 / 16) * 3;
         const count = Math.floor(100 / spacing) + 1;
-        return Array.from({ length: count }, (_, i) => (
-          <group key={i} position={[0, 0, -50 + i * spacing]}>
-            <PottedPlant />
-          </group>
-        ));
+        return Array.from({ length: count }, (_, i) => {
+          const z = -50 + i * spacing;
+          if (z > 0 && z < 31) return null;
+          return (
+            <group key={i} position={[0, 0, z]}>
+              <PottedPlant />
+            </group>
+          );
+        });
       })()}
     </>
   );

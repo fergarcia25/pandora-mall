@@ -16,11 +16,9 @@ function HomePage() {
         </p>
         <div className={styles.actions}>
           <Link to="/mall" className="btn btn-primary btn-lg">
-            Enter the Mall
+            Entrar al Shopping
           </Link>
-          <Link to="/catalog" className="btn btn-outline-primary btn-lg">
-            Browse Catalog
-          </Link>
+          
         </div>
         <div className={styles.features}>
           <div className={styles.feature}>

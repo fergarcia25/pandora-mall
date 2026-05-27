@@ -8,11 +8,7 @@ function Footer() {
           <span className={styles.logo}>Pandora Mall</span>
           <span className={styles.tagline}>The future of virtual shopping</span>
         </div>
-        <div className={styles.links}>
-          <span className={styles.copyright}>
-            &copy; {new Date().getFullYear()} Pandora Mall. All rights reserved.
-          </span>
-        </div>
+        
       </div>
     </footer>
   );
