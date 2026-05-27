@@ -8,7 +8,6 @@ function Footer() {
           <span className={styles.logo}>Pandora Mall</span>
           <span className={styles.tagline}>The future of virtual shopping</span>
         </div>
-        
       </div>
     </footer>
   );

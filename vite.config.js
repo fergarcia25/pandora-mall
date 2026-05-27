@@ -5,7 +5,7 @@ import path from 'path';
 export default defineConfig(({ mode }) => {
   const isProd = mode === 'production';
   return {
-    //base: isProd ? '/pandora-mall/dist' : '/',
+    base: isProd ? '/pandora-mall/' : '/',
     plugins: [react()],
     resolve: {
       alias: {
