@@ -8,6 +8,12 @@ function Lights() {
         castShadow
         shadow-mapSize-width={2048}
         shadow-mapSize-height={2048}
+        shadow-camera-left={-60}
+        shadow-camera-right={60}
+        shadow-camera-top={60}
+        shadow-camera-bottom={-60}
+        shadow-camera-near={0.1}
+        shadow-camera-far={60}
       />
       <pointLight position={[-8, 6, -8]} intensity={0.3} color="#6c5ce7" />
       <pointLight position={[8, 6, 8]} intensity={0.3} color="#00cec9" />

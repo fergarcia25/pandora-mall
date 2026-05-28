@@ -174,9 +174,9 @@ function VirtualMallPage() {
       <div className={styles.hud}>
         <div className={styles.hudControls}>
           <kbd className={styles.kbd}>W A S D</kbd>
-          <span className={styles.hudText}>Move</span>
+          <span className={styles.hudText}>Caminar</span>
           <kbd className={styles.kbd}>Mouse</kbd>
-          <span className={styles.hudText}>Look around</span>
+          <span className={styles.hudText}>Observar</span>
         </div>
       </div>
 

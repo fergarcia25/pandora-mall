@@ -6,7 +6,7 @@ import * as THREE from 'three';
 
 const CAMERA_DISTANCE = 14;
 const CAMERA_HEIGHT = 10;
-const AVT_DISTANCE = 4.37;
+const AVT_DISTANCE = 4.48;
 const AVT_HEIGHT = 1.2;
 const LERP_SPEED = 4;
 
@@ -20,8 +20,8 @@ function CameraController() {
 
     if (cameraMode === 'C-AVT') {
       const [ax, ay, az] = avatarPosition;
-      const targetX = ax + Math.sin(avatarRotation) * AVT_DISTANCE;
-      const targetZ = az + Math.cos(avatarRotation) * AVT_DISTANCE;
+      const targetX = ax - Math.sin(avatarRotation) * AVT_DISTANCE;
+      const targetZ = az - Math.cos(avatarRotation) * AVT_DISTANCE;
       const targetY = ay + AVT_HEIGHT;
 
       cameraRef.current.position.lerp(

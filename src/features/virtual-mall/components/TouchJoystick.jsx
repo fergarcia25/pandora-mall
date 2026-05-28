@@ -2,7 +2,7 @@ import { useRef, useCallback } from 'react';
 import { keys } from '../stores/movementStore';
 import styles from './TouchJoystick.module.scss';
 
-const DEAD_ZONE = 10;
+const DEAD_ZONE = 15;
 
 function TouchJoystick() {
   const baseRef = useRef(null);

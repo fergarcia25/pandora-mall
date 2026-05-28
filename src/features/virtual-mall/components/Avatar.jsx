@@ -21,14 +21,6 @@ function HumanFigure() {
         <meshStandardMaterial color="#f5cba7" />
       </mesh>
 
-      <mesh position={[0, 0.804, 0.23]}>
-        <boxGeometry args={[0.2, 0.24, 0.1]} />
-        <meshStandardMaterial color="#4a3f6b" roughness={0.8} />
-      </mesh>
-      <mesh position={[0, 0.804, 0.28]}>
-        <boxGeometry args={[0.14, 0.18, 0.03]} />
-        <meshStandardMaterial color="#3a2f5b" roughness={0.9} />
-      </mesh>
     </group>
   );
 }
@@ -68,14 +60,14 @@ function Avatar() {
     headYaw.current += (targetHeadYaw - headYaw.current) * Math.min(1, 8 * delta);
 
     if (headRef.current) {
-      headRef.current.rotation.y = headYaw.current;
+      headRef.current.rotation.y = Math.PI + headYaw.current;
     }
 
     let moveX = 0;
     let moveZ = 0;
 
-    if (keys.forward) moveZ -= 1;
-    if (keys.backward) moveZ += 1;
+    if (keys.forward) moveZ += 1;
+    if (keys.backward) moveZ -= 1;
 
     const isMoving = keys.forward || keys.backward;
     if (isMoving) {
@@ -106,7 +98,7 @@ function Avatar() {
     // Body bob and subtle sway
     const bodyBob = isMoving ? Math.abs(Math.sin(walkTime.current)) * 0.03 : 0;
     if (visualRef.current) {
-      visualRef.current.position.y = -bodyBob;
+      visualRef.current.position.y = 0.102 - bodyBob;
       visualRef.current.rotation.z = isMoving ? walkCycle * 0.015 : 0;
     }
 
@@ -152,7 +144,7 @@ function Avatar() {
       angularDamping={10}
     >
       <CapsuleCollider args={[0.4, 0.2]} position={[0, 0.6, 0]} />
-      <group ref={visualRef} scale={0.88}>
+      <group ref={visualRef} scale={0.88} position={[0, 0.102, 0]}>
         <HumanFigure />
 
         {/* Left arm - upper arm white, forearm skin */}
@@ -170,11 +162,11 @@ function Avatar() {
               <capsuleGeometry args={[0.05, 0.1418, 6, 8]} />
               <meshStandardMaterial color="#f5cba7" />
             </mesh>
+            <mesh position={[0, -0.2418, 0]} rotation={[0, Math.PI, 0]} castShadow>
+              <sphereGeometry args={[0.035, 8, 8]} />
+              <meshStandardMaterial color="#f5cba7" />
+            </mesh>
           </group>
-          <mesh position={[-0.012, -0.481, -0.036]} castShadow>
-            <sphereGeometry args={[0.035, 8, 8]} />
-            <meshStandardMaterial color="#f5cba7" />
-          </mesh>
         </group>
 
         {/* Right arm - upper arm white, forearm skin */}
@@ -192,11 +184,11 @@ function Avatar() {
               <capsuleGeometry args={[0.05, 0.1418, 6, 8]} />
               <meshStandardMaterial color="#f5cba7" />
             </mesh>
+            <mesh position={[0, -0.2418, 0]} rotation={[0, Math.PI, 0]} castShadow>
+              <sphereGeometry args={[0.035, 8, 8]} />
+              <meshStandardMaterial color="#f5cba7" />
+            </mesh>
           </group>
-          <mesh position={[0.012, -0.481, -0.036]} castShadow>
-            <sphereGeometry args={[0.035, 8, 8]} />
-            <meshStandardMaterial color="#f5cba7" />
-          </mesh>
         </group>
 
         {/* Left leg - military green */}
@@ -212,7 +204,7 @@ function Avatar() {
                 <meshStandardMaterial color="#556b2f" />
               </mesh>
               <group ref={leftAnkleRef} position={[0, -0.21, 0]}>
-                <RoundedBox args={[0.14, 0.045, 0.09]} radius={0.015} position={[0, 0, -0.07]} castShadow>
+                <RoundedBox args={[0.194, 0.0568, 0.295]} radius={0.04} position={[0, -0.0678, 0.0975]} castShadow>
                   <meshStandardMaterial color="#000000" />
                 </RoundedBox>
               </group>
@@ -233,7 +225,7 @@ function Avatar() {
                 <meshStandardMaterial color="#556b2f" />
               </mesh>
               <group ref={rightAnkleRef} position={[0, -0.21, 0]}>
-                <RoundedBox args={[0.14, 0.045, 0.09]} radius={0.015} position={[0, 0, -0.07]} castShadow>
+                <RoundedBox args={[0.194, 0.0568, 0.295]} radius={0.04} position={[0, -0.0678, 0.0975]} castShadow>
                   <meshStandardMaterial color="#000000" />
                 </RoundedBox>
               </group>

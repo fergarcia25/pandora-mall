@@ -116,14 +116,6 @@ function NPCFigure() {
         <meshStandardMaterial color="#f5cba7" />
       </mesh>
 
-      <mesh position={[0, 0.804, 0.23]}>
-        <boxGeometry args={[0.2, 0.24, 0.1]} />
-        <meshStandardMaterial color="#003380" roughness={0.8} />
-      </mesh>
-      <mesh position={[0, 0.804, 0.28]}>
-        <boxGeometry args={[0.14, 0.18, 0.03]} />
-        <meshStandardMaterial color="#002266" roughness={0.9} />
-      </mesh>
     </group>
   );
 }
@@ -436,7 +428,7 @@ function NPC() {
 
     const bodyBob = walking ? Math.abs(Math.sin(walkTime.current)) * 0.03 : 0;
     if (visualRef.current) {
-      visualRef.current.position.y = -bodyBob;
+      visualRef.current.position.y = 0.102 - bodyBob;
       visualRef.current.rotation.z = walking ? walkCycle * 0.015 : 0;
     }
 
@@ -462,7 +454,7 @@ function NPC() {
       angularDamping={10}
     >
       <CapsuleCollider args={[0.4, 0.2]} position={[0, 0.6, 0]} />
-      <group ref={visualRef} scale={0.88}>
+      <group ref={visualRef} scale={0.88} position={[0, 0.102, 0]}>
         <NPCFigure />
 
         <group ref={leftArmRef} position={[-0.22, 0.9385, 0]}>
@@ -479,11 +471,11 @@ function NPC() {
               <capsuleGeometry args={[0.05, 0.1418, 6, 8]} />
               <meshStandardMaterial color="#f5cba7" />
             </mesh>
+            <mesh position={[0, -0.2418, 0]} rotation={[0, Math.PI, 0]} castShadow>
+              <sphereGeometry args={[0.035, 8, 8]} />
+              <meshStandardMaterial color="#f5cba7" />
+            </mesh>
           </group>
-          <mesh position={[-0.012, -0.481, -0.036]} castShadow>
-            <sphereGeometry args={[0.035, 8, 8]} />
-            <meshStandardMaterial color="#f5cba7" />
-          </mesh>
         </group>
 
         <group ref={rightArmRef} position={[0.22, 0.9385, 0]}>
@@ -500,11 +492,11 @@ function NPC() {
               <capsuleGeometry args={[0.05, 0.1418, 6, 8]} />
               <meshStandardMaterial color="#f5cba7" />
             </mesh>
+            <mesh position={[0, -0.2418, 0]} rotation={[0, Math.PI, 0]} castShadow>
+              <sphereGeometry args={[0.035, 8, 8]} />
+              <meshStandardMaterial color="#f5cba7" />
+            </mesh>
           </group>
-          <mesh position={[0.012, -0.481, -0.036]} castShadow>
-            <sphereGeometry args={[0.035, 8, 8]} />
-            <meshStandardMaterial color="#f5cba7" />
-          </mesh>
         </group>
 
         <group ref={leftLegRef} position={[-0.08, 0.504, 0]}>
@@ -519,7 +511,7 @@ function NPC() {
                 <meshStandardMaterial color="#000000" />
               </mesh>
               <group ref={leftAnkleRef} position={[0, -0.21, 0]}>
-                <RoundedBox args={[0.14, 0.045, 0.09]} radius={0.015} position={[0, 0, -0.07]} castShadow>
+                <RoundedBox args={[0.184, 0.0568, 0.325]} radius={0.04} position={[0, -0.0678, 0.0975]} castShadow>
                   <meshStandardMaterial color="#000000" />
                 </RoundedBox>
               </group>
@@ -539,7 +531,7 @@ function NPC() {
                 <meshStandardMaterial color="#000000" />
               </mesh>
               <group ref={rightAnkleRef} position={[0, -0.21, 0]}>
-                <RoundedBox args={[0.14, 0.045, 0.09]} radius={0.015} position={[0, 0, -0.07]} castShadow>
+                <RoundedBox args={[0.184, 0.0568, 0.325]} radius={0.04} position={[0, -0.0678, 0.0975]} castShadow>
                   <meshStandardMaterial color="#000000" />
                 </RoundedBox>
               </group>
@@ -547,7 +539,7 @@ function NPC() {
           </group>
         </group>
 
-        <group ref={headRef}>
+        <group ref={headRef} rotation={[0, Math.PI, 0]}>
           <mesh position={[0, 1.095, 0]} castShadow>
             <sphereGeometry args={[0.14, 16, 16]} />
             <meshStandardMaterial color="#f5cba7" />
